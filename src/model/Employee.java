@@ -8,6 +8,7 @@ public class Employee {
     private String password;
     private int age;
     private String address;
+    private String phoneNumber;
     private String workstatus;
     private int employeelevel;
     
@@ -15,13 +16,14 @@ public class Employee {
 
     }
 
-    public Employee(int employeeid , String filename , String lastname , String password , int age , String address , String workstatus , int employeelevel){
+    public Employee(int employeeid , String filename , String lastname , String password , int age , String address, String phoneNumber, String workstatus , int employeelevel){
         this.employeeid = employeeid;
         this.filename = filename;
         this.lastname = lastname;
         this.password = password;
         this.age = age;
         this.address = address;
+        this.phoneNumber = phoneNumber;
         this.workstatus = workstatus;
         this.employeelevel = employeelevel;
     }
@@ -72,6 +74,14 @@ public class Employee {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getPhoneNumber(){
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getWorkStatus() {

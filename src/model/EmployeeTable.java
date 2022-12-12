@@ -41,12 +41,12 @@ public class EmployeeTable {
 
     //เป็นการเพิ่มค่าในตาราง
     public static int insertEmployee(DatabaseHandler dbHandler, Employee emp) {
-         String sql = "insert into teletubbies.Employee(EmployeeID, FirstName, LastName, passEmp, Age, Address, WorkStatus, EmployeeLevel)" + 
-               " values (?,?,?,?,?,?,?,?)";
+         String sql = "insert into teletubbies.Employee(EmployeeID, FirstName, LastName, passEmp, Age, Address, phonNumber, WorkStatus, EmployeeLevel)" + 
+               " values (?,?,?,?,?,?,?,?,?)";
          
          int rowInserted;
          try {
-             rowInserted = dbHandler.update(sql, emp.getEmployeeID(), emp.getFileName(), emp.getLastName(), emp.getPasswordEmp(), emp.getAge(), emp.getAddress(), emp.getWorkStatus(), emp.getEmployeeLevel() );
+             rowInserted = dbHandler.update(sql, emp.getEmployeeID(), emp.getFileName(), emp.getLastName(), emp.getPasswordEmp(), emp.getAge(), emp.getAddress(), emp.getPhoneNumber(), emp.getWorkStatus(), emp.getEmployeeLevel() );
          }
          catch(SQLException ex ) {
              rowInserted = 0;
@@ -68,6 +68,7 @@ public class EmployeeTable {
            emp.setPasswordEmp(rs.getString("passEmp"));
            emp.setAge(rs.getInt("Age"));
            emp.setAddress(rs.getString("Address"));
+           emp.setPhoneNumber(rs.getString("phonNumber"));
            emp.setWorkStatus(rs.getString("WorkStatus"));
            emp.setEmployeeLevel(rs.getInt("EmployeeLevel"));
        }
@@ -109,6 +110,7 @@ public class EmployeeTable {
                     emp.setPasswordEmp(rs.getString("passEmp"));
                     emp.setAge(rs.getInt("Age"));
                     emp.setAddress(rs.getString("Address"));
+                    emp.setPhoneNumber(rs.getString("phonNumber"));
                     emp.setWorkStatus(rs.getString("WorkStatus"));
                     emp.setEmployeeLevel(rs.getInt("EmployeeLevel"));
                 } catch (SQLException ex) {
