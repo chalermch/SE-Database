@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Date;
+
 public class SaleOrder {
     private int orderid;
     private int quantity;
@@ -7,18 +9,20 @@ public class SaleOrder {
     private String orderstatus;
     private int foodid;
     private int employeeid;
+    private Date timestamp;
 
     public SaleOrder(){
 
     }
 
-    public SaleOrder(int orderid, int quantity, int totalprice, String orderstatus, int foodid, int employeeid){
+    public SaleOrder(int orderid, int quantity, int totalprice, String orderstatus, int foodid, int employeeid, Date timestmp){
         this.orderid = orderid;
         this.quantity = quantity;
         this.totalprice = totalprice;
         this.orderstatus = orderstatus;
         this.foodid = foodid;
         this.employeeid = employeeid;
+        this.timestamp = timestmp;
     }
 
     public int getOrderID() {
@@ -68,4 +72,13 @@ public class SaleOrder {
     public void setEmployeeID(int employeeid) {
         this.employeeid = employeeid;
     }
+
+    public Date getTimestamp(){
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp){
+        this.timestamp = timestamp;
+    }
+
 }

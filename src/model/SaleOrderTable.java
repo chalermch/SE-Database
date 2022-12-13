@@ -42,12 +42,12 @@ public class SaleOrderTable {
 
     // เป็นการเพิ่มค่าในตาราง
     public static int insertOrder(DatabaseHandler dbHandler, SaleOrder order) {
-        String sql = "insert into teletubbies.SaleOrder(OrderID, Quantity, TotalPrice, OrderStatus, FoodID, EmployeeID)" +
+        String sql = "insert into teletubbies.SaleOrder(OrderID, Quantity, TotalPrice, OrderStatus, FoodID, EmployeeID, SaleTimestamp)" +
                 " values (?,?,?,?,?,?)";
 
         int rowInserted;
         try {
-            rowInserted = dbHandler.update(sql, order.getOrderID(), order.getQuantity(), order.getTotalPrice(), order.getOrderStatus(), order.getFoodID(), order.getEmployeeID());
+            rowInserted = dbHandler.update(sql, order.getOrderID(), order.getQuantity(), order.getTotalPrice(), order.getOrderStatus(), order.getFoodID(), order.getEmployeeID(), order.getTimestamp());
         } catch (SQLException ex) {
             rowInserted = 0;
         }
@@ -68,6 +68,7 @@ public class SaleOrderTable {
             order.setOrderStatus(rs.getString("OrderStatus"));
             order.setFoodID(rs.getInt("FoodID"));
             order.setEmployeeID(rs.getInt("EmployeeID"));
+            order.setTimestamp(rs.getDate("SaleTimestamp"));
         }
         return order;
 
@@ -107,6 +108,7 @@ public class SaleOrderTable {
                     order.setOrderStatus(rs.getString("OrderStatus"));
                     order.setFoodID(rs.getInt("FoodID"));
                     order.setEmployeeID(rs.getInt("EmployeeID"));
+                    order.setTimestamp(rs.getDate("SaleTimestamp"));
                 } catch (SQLException ex) {
                     Logger.getLogger(SaleOrderTable.class.getName()).log(Level.SEVERE, null, ex);
                 }
