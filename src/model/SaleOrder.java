@@ -3,6 +3,8 @@ package model;
 import java.util.Date;
 
 public class SaleOrder {
+
+    private int seq;
     private int orderid;
     private int quantity;
     private int totalprice;
@@ -15,14 +17,33 @@ public class SaleOrder {
 
     }
 
-    public SaleOrder(int orderid, int quantity, int totalprice, String orderstatus, int foodid, int employeeid, Date timestmp){
+    public SaleOrder(int orderid, int quantity, int totalprice, String orderstatus, int foodid, int employeeid, Date timestamp){
         this.orderid = orderid;
         this.quantity = quantity;
         this.totalprice = totalprice;
         this.orderstatus = orderstatus;
         this.foodid = foodid;
         this.employeeid = employeeid;
-        this.timestamp = timestmp;
+        this.timestamp = timestamp;
+    }
+
+    public SaleOrder(int seq, int orderid, int quantity, int totalprice, String orderstatus, int foodid, int employeeid, Date timestamp){
+        this.seq = seq;
+        this.orderid = orderid;
+        this.quantity = quantity;
+        this.totalprice = totalprice;
+        this.orderstatus = orderstatus;
+        this.foodid = foodid;
+        this.employeeid = employeeid;
+        this.timestamp = timestamp;
+    }
+
+    public int getSeq(){
+        return seq;
+    }
+
+    public void setSeq(int seq){
+        this.seq = seq;
     }
 
     public int getOrderID() {

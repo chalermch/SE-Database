@@ -42,12 +42,12 @@ public class SaleOrderTable {
 
     // เป็นการเพิ่มค่าในตาราง
     public static int insertOrder(DatabaseHandler dbHandler, SaleOrder order) {
-        String sql = "insert into teletubbies.SaleOrder(OrderID, Quantity, TotalPrice, OrderStatus, FoodID, EmployeeID, SaleTimestamp)" +
-                " values (?,?,?,?,?,?)";
+        String sql = "insert into teletubbies.SaleOrder(Seq, OrderID, Quantity, TotalPrice, OrderStatus, FoodID, EmployeeID, SaleTimestamp)" +
+                " values (?,?,?,?,?,?,?,?)";
 
         int rowInserted;
         try {
-            rowInserted = dbHandler.update(sql, order.getOrderID(), order.getQuantity(), order.getTotalPrice(), order.getOrderStatus(), order.getFoodID(), order.getEmployeeID(), order.getTimestamp());
+            rowInserted = dbHandler.update(sql, order.getSeq(), order.getOrderID(), order.getQuantity(), order.getTotalPrice(), order.getOrderStatus(), order.getFoodID(), order.getEmployeeID(), order.getTimestamp());
         } catch (SQLException ex) {
             rowInserted = 0;
         }
@@ -62,6 +62,7 @@ public class SaleOrderTable {
         rs = dbHandler.query(sql, id);
         if (rs.next()) {
             order = new SaleOrder();
+            order.setSeq(rs.getInt("Seq"));
             order.setOrderID(rs.getInt("OrderID"));
             order.setQuantity(rs.getInt("Quantity"));
             order.setTotalPrice(rs.getInt("TotalPrice"));
@@ -102,6 +103,7 @@ public class SaleOrderTable {
             while (rs.next()) {
                 SaleOrder order = new SaleOrder();
                 try {
+                    order.setSeq(rs.getInt("Seq"));
                     order.setOrderID(rs.getInt("OrderID"));
                     order.setQuantity(rs.getInt("Quantity"));
                     order.setTotalPrice(rs.getInt("TotalPrice"));
