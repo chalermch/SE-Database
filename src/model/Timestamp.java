@@ -6,30 +6,21 @@ public class Timestamp{
 
     private int seq;
     private int employeeid;
-    private Date datetimelogin;
-    private Date datetimelogout;
+    private String datetimelogin;
+    private String datetimelogout;
 
     public Timestamp(){
 
     }
 
-    public Timestamp(int employeeid , Date datetimelogout){
-        this.employeeid = employeeid;
-        this.datetimelogout = datetimelogout;
-    }
 
-    public Timestamp(int employeeid , Date datetimelogin , Date datetimelogout){
+
+    public Timestamp(int employeeid , String datetimelogin , String datetimelogout){
         this.employeeid = employeeid;
         this.datetimelogin = datetimelogin;
         this.datetimelogout = datetimelogout;
     }
 
-    public Timestamp(int seq , int employeeid , Date datetimelogin , Date datetimelogout){
-        this.seq = seq;
-        this.employeeid = employeeid;
-        this.datetimelogin = datetimelogin;
-        this.datetimelogout = datetimelogout;
-    }
 
     public int getSeq() {
         return seq;
@@ -47,19 +38,19 @@ public class Timestamp{
         this.employeeid = employeeid;
     }
 
-    public Date getDateTimeLogIn() {
+    public String getDateTimeLogIn() {
         return datetimelogin;
     }
 
-    public void setDateTimeLogIn(Date datetimelogin) {
+    public void setDateTimeLogIn(String datetimelogin) {
         this.datetimelogin = datetimelogin;
     }
 
-    public Date getDateTimeLogOut() {
+    public String getDateTimeLogOut() {
         return datetimelogout;
     }
 
-    public void setDateTimeLogOut(Date datetimelogout) {
+    public void setDateTimeLogOut(String datetimelogout) {
         this.datetimelogout = datetimelogout;
     }
 }

@@ -65,8 +65,8 @@ public class TimestampTable {
             time = new Timestamp();
             time.setSeq(rs.getInt("Seq"));
             time.setEmployeeID(rs.getInt("EmployeeID"));
-            time.setDateTimeLogIn(rs.getDate("DateTimeLogIn"));
-            time.setDateTimeLogOut(rs.getDate("DateTimeLogOut"));
+            time.setDateTimeLogIn(rs.getString("DateTimeLogIn"));
+            time.setDateTimeLogOut(rs.getString("DateTimeLogOut"));
 
         }
         return time;
@@ -104,8 +104,8 @@ public class TimestampTable {
                     time = new Timestamp();
                     time.setSeq(rs.getInt("Seq"));
                     time.setEmployeeID(rs.getInt("EmployeeID"));
-                    time.setDateTimeLogIn(rs.getDate("DateTimeLogIn"));
-                    time.setDateTimeLogOut(rs.getDate("DateTimeLogOut"));
+                    time.setDateTimeLogIn(rs.getString("DateTimeLogIn"));
+                    time.setDateTimeLogOut(rs.getString("DateTimeLogOut"));
                 } catch (SQLException ex) {
                     Logger.getLogger(TimestampTable.class.getName()).log(Level.SEVERE, null, ex);
                 }

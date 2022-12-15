@@ -1,23 +1,23 @@
 package model;
 
-import java.util.Date;
-
 public class SaleOrder {
 
     private int seq;
     private int orderid;
     private int quantity;
-    private int totalprice;
+    private double totalprice;
     private String orderstatus;
     private int foodid;
     private int employeeid;
-    private Date timestamp;
+    private double cash;
+    private String paymentMethod;
+    private String timestamp;
 
     public SaleOrder(){
 
     }
 
-    public SaleOrder(int orderid, int quantity, int totalprice, String orderstatus, int foodid, int employeeid, Date timestamp){
+    public SaleOrder(int orderid, int quantity, double totalprice, String orderstatus, int foodid, int employeeid, String timestamp){
         this.orderid = orderid;
         this.quantity = quantity;
         this.totalprice = totalprice;
@@ -27,7 +27,7 @@ public class SaleOrder {
         this.timestamp = timestamp;
     }
 
-    public SaleOrder(int seq, int orderid, int quantity, int totalprice, String orderstatus, int foodid, int employeeid, Date timestamp){
+    public SaleOrder(int seq, int orderid, int quantity, double totalprice, String orderstatus, int foodid, int employeeid, String timestamp){
         this.seq = seq;
         this.orderid = orderid;
         this.quantity = quantity;
@@ -62,11 +62,11 @@ public class SaleOrder {
         this.quantity = quantity;
     }
 
-    public int getTotalPrice() {
+    public double getTotalPrice() {
         return totalprice;
     }
 
-    public void setTotalPrice(int totalprice) {
+    public void setTotalPrice(double totalprice) {
         this.totalprice = totalprice;
     }
 
@@ -94,11 +94,27 @@ public class SaleOrder {
         this.employeeid = employeeid;
     }
 
-    public Date getTimestamp(){
+    public double getCash(){
+        return cash;
+    }
+
+    public void setCash(double cash) {
+        this.cash = cash;
+    }
+
+    public String getPaymentMethod(){
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public String getTimestamp(){
         return timestamp;
     }
 
-    public void setTimestamp(Date timestamp){
+    public void setTimestamp(String timestamp){
         this.timestamp = timestamp;
     }
 

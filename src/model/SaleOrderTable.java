@@ -42,12 +42,12 @@ public class SaleOrderTable {
 
     // เป็นการเพิ่มค่าในตาราง
     public static int insertOrder(DatabaseHandler dbHandler, SaleOrder order) {
-        String sql = "insert into teletubbies.SaleOrder(Seq, OrderID, Quantity, TotalPrice, OrderStatus, FoodID, EmployeeID, SaleTimestamp)" +
+        String sql = "insert into teletubbies.SaleOrder(Seq, OrderID, Quantity, TotalPrice, OrderStatus, FoodID, EmployeeID, cash, PaymentMethod, SaleTimestamp)" +
                 " values (?,?,?,?,?,?,?,?)";
 
         int rowInserted;
         try {
-            rowInserted = dbHandler.update(sql, order.getSeq(), order.getOrderID(), order.getQuantity(), order.getTotalPrice(), order.getOrderStatus(), order.getFoodID(), order.getEmployeeID(), order.getTimestamp());
+            rowInserted = dbHandler.update(sql, order.getSeq(), order.getOrderID(), order.getQuantity(), order.getTotalPrice(), order.getOrderStatus(), order.getFoodID(), order.getEmployeeID(), order.getCash(), order.getPaymentMethod(), order.getTimestamp());
         } catch (SQLException ex) {
             rowInserted = 0;
         }
@@ -65,11 +65,13 @@ public class SaleOrderTable {
             order.setSeq(rs.getInt("Seq"));
             order.setOrderID(rs.getInt("OrderID"));
             order.setQuantity(rs.getInt("Quantity"));
-            order.setTotalPrice(rs.getInt("TotalPrice"));
+            order.setTotalPrice(rs.getDouble("TotalPrice"));
             order.setOrderStatus(rs.getString("OrderStatus"));
             order.setFoodID(rs.getInt("FoodID"));
             order.setEmployeeID(rs.getInt("EmployeeID"));
-            order.setTimestamp(rs.getDate("SaleTimestamp"));
+            order.setCash(rs.getDouble("cash"));
+            order.setPaymentMethod(rs.getString("PaymentMethod"));
+            order.setTimestamp(rs.getString("SaleTimestamp"));
         }
         return order;
 
@@ -106,11 +108,13 @@ public class SaleOrderTable {
                     order.setSeq(rs.getInt("Seq"));
                     order.setOrderID(rs.getInt("OrderID"));
                     order.setQuantity(rs.getInt("Quantity"));
-                    order.setTotalPrice(rs.getInt("TotalPrice"));
+                    order.setTotalPrice(rs.getDouble("TotalPrice"));
                     order.setOrderStatus(rs.getString("OrderStatus"));
                     order.setFoodID(rs.getInt("FoodID"));
                     order.setEmployeeID(rs.getInt("EmployeeID"));
-                    order.setTimestamp(rs.getDate("SaleTimestamp"));
+                    order.setCash(rs.getDouble("cash"));
+                    order.setPaymentMethod(rs.getString("PaymentMethod"));
+                    order.setTimestamp(rs.getString("SaleTimestamp"));
                 } catch (SQLException ex) {
                     Logger.getLogger(SaleOrderTable.class.getName()).log(Level.SEVERE, null, ex);
                 }
