@@ -4,6 +4,7 @@ import java.util.List;
 
 import database.DatabaseHandler;
 import model.Employee;
+import model.EmployeeReport;
 import model.EmployeeTable;
 import model.Menu;
 import model.MenuTable;
@@ -24,8 +25,11 @@ public class App {
         Date logOut = dt.parse(date[1]);
     
         DatabaseHandler dbHandler = new DatabaseHandler();
-        List<ReportSellDaliy> reportList = ReportTable.findReportByOrderId(dbHandler, 2);
-        printAllReport(reportList);
+        List<EmployeeReport> empList = ReportTable.findAllReportEmployee(dbHandler);
+        printAllReportEmployee(empList);
+
+        //List<ReportSellDaliy> reportList = ReportTable.findReportByOrderId(dbHandler, 2);
+        //printAllReportSale(reportList);
 
         //List<ReportSellDaliy> reportList = ReportTable.findReportOrderByTime(dbHandler, "2022-12-17" );
         //printAllReport(reportList);
@@ -48,7 +52,7 @@ public class App {
 */        
     }
 
-    public static void printAllReport(List<ReportSellDaliy> reportList) {
+    public static void printAllReportSale(List<ReportSellDaliy> reportList) {
         for(ReportSellDaliy report : reportList) {
            System.out.println(report.getOrderID() + " ");
            System.out.println(report.getEmployeeID() + " ");
@@ -57,6 +61,19 @@ public class App {
            System.out.println(report.getQuantity() + " ");
            System.out.println(report.getTotalPrice() + " ");
            System.out.println(report.getSaleTimestamp() + " ");
+       }
+    }
+
+    public static void printAllReportEmployee(List<EmployeeReport> empList) {
+        for(EmployeeReport report : empList) {
+           System.out.println(report.getEmployeeID() + " ");
+           System.out.println(report.getFirstName() + " ");
+           System.out.println(report.getLastName() + " ");
+           System.out.println(report.getPhoneNumber() + " ");
+           System.out.println(report.getAddress() + " ");
+           System.out.println(report.getEmployeelevel() + " ");
+           System.out.println(report.getDateLogIn() + " ");
+           System.out.println(report.getDateLogOut() + " ");
        }
     }
 

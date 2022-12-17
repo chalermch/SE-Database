@@ -41,6 +41,15 @@ public class ReportTable {
         return reportList;
     }
 
+    public static ArrayList<EmployeeReport> findAllReportEmployee(DatabaseHandler dbHandler) throws SQLException {
+        String sql = "SELECT Employee.EmployeeID, FirstName, LastName, Employee.phonNumber, Address, EmployeeLevel, DateTimeLogIn, DateTimeLogOut FROM Employee, Timestamp WHERE Employee.EmployeeID = Timestamp.EmployeeID";
+        ResultSet rs; 
+        ArrayList<EmployeeReport> empList = null;
+        rs = dbHandler.query(sql);
+        empList = extractEmployee(rs);
+        return empList;
+    }
+
     // เป็นการนำค่าจาก database มาเก็บใว้ในรูปของ arraylist
     private static ArrayList<ReportSellDaliy> extractDaliy(ResultSet rs) {
         ArrayList<ReportSellDaliy> reportList = new ArrayList<>();
@@ -69,5 +78,35 @@ public class ReportTable {
             reportList = null;
         }
         return reportList;
+    }
+
+        //เป็นการนำค่าจาก database มาเก็บใว้ในรูปของ arraylist
+    private static ArrayList<EmployeeReport> extractEmployee(ResultSet rs) {
+        ArrayList<EmployeeReport> empList = new ArrayList<>();
+        try {
+            while(rs.next()) {
+                EmployeeReport emp = new EmployeeReport();
+                try {
+                    emp.setEmployeeID(rs.getInt("EmployeeID"));
+                    emp.setFirstName(rs.getString("FirstName"));
+                    emp.setLastName(rs.getString("LastName"));
+                    emp.setPhoneNumber(rs.getString("phonNumber"));
+                    emp.setAddress(rs.getString("Address"));
+                    emp.setEmployeelevel(rs.getInt("EmployeeLevel"));
+                    emp.setDateLogIn(rs.getString("DateTimeLogIn"));
+                    emp.setDateLogOut(rs.getString("DateTimeLogOut"));
+                } catch (SQLException ex) {
+                    Logger.getLogger(ReportTable.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                empList.add(emp);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReportTable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(empList.isEmpty()) {
+            empList = null;
+        }
+        return empList;
     }
 }
