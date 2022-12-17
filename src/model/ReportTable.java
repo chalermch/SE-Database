@@ -10,28 +10,17 @@ import database.DatabaseHandler;
 public class ReportTable {
 
 
-    public static ReportSellDaliy findOrderById(DatabaseHandler dbHandler, int orderid) throws SQLException {
-        String sql = "SELECT OrderID, EmployeeID, FoodName, FoodPrice, Quantity, TotalPrice, SaleTimestamp FROM SaleOrder AS s , Menu AS m WHERE s.FoodID = m.FoodID ORDER BY OrderID ASC";
+    public static ArrayList<ReportSellDaliy> findReportByOrderId(DatabaseHandler dbHandler, int orderid) throws SQLException {
+        String sql = "SELECT OrderID, EmployeeID, FoodName, FoodPrice, Quantity, TotalPrice, SaleTimestamp FROM SaleOrder AS s , Menu AS m WHERE s.FoodID = m.FoodID AND OrderId = '" + orderid + "' ORDER BY OrderID ASC";
         ResultSet rs;
-        ReportSellDaliy report = null;
-        rs = dbHandler.query(sql, orderid);
-        if (rs.next()) {
-            report = new ReportSellDaliy();
-            report.setOrderID(rs.getInt("OrderID"));
-            report.setEmployeeID(rs.getInt("EmployeeID"));
-            report.setFoodName(rs.getString("FoodName"));
-            report.setFoodPrice(rs.getInt("FoodPrice"));
-            report.setQuantity(rs.getInt("Quantity"));
-            report.setTotalPrice(rs.getDouble("TotalPrice"));
-            report.setSaleTimestamp(rs.getString("SaleTimestamp"));
-
-        }
-        return report;
-
+        ArrayList<ReportSellDaliy> reportList = null;
+        rs = dbHandler.query(sql);
+        reportList = extractDaliy(rs);
+        return reportList;
     }
 
     // การหาค่าในตารางโดยหาชื่อที่ต้องการ
-    public static ArrayList<ReportSellDaliy> findOrderByTime(DatabaseHandler dbHandler, String time)
+    public static ArrayList<ReportSellDaliy> findReportOrderByTime(DatabaseHandler dbHandler, String time)
             throws SQLException {
         String sql = "SELECT OrderID, EmployeeID, FoodName, FoodPrice, Quantity, TotalPrice, SaleTimestamp FROM SaleOrder AS s , Menu AS m WHERE s.FoodID = m.FoodID AND s.SaleTimestamp Like '" + time + "%' ORDER BY OrderID ASC";
         ResultSet rs;

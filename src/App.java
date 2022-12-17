@@ -24,8 +24,11 @@ public class App {
         Date logOut = dt.parse(date[1]);
     
         DatabaseHandler dbHandler = new DatabaseHandler();
-        List<ReportSellDaliy> reportList = ReportTable.findAllReportOfSell(dbHandler);
+        List<ReportSellDaliy> reportList = ReportTable.findReportByOrderId(dbHandler, 2);
         printAllReport(reportList);
+
+        //List<ReportSellDaliy> reportList = ReportTable.findReportOrderByTime(dbHandler, "2022-12-17" );
+        //printAllReport(reportList);
         //Employee emp = new Employee(2,"John", "Merry", "111", 12, "144/12", "0955049358", "work", 1);
         //EmployeeTable.insertEmployee(dbHandler, emp);
        // Menu menu = new Menu(2, "hee", 1500);
@@ -56,4 +59,5 @@ public class App {
            System.out.println(report.getSaleTimestamp() + " ");
        }
     }
+
 }
